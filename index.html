@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クリスマス限定！ちひろガラポン🐮♡</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&family=Yusei+Magic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 雪のエフェクト -->
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+    </div>
+
+    <!-- メイン画面 -->
+    <div id="main-screen" class="screen active">
+        <h1 class="title">🎄 クリスマス限定！ちひろガラポン🐮♡ 🎄</h1>
+        
+        <div class="garapon-container">
+            <!-- 高級ガラポンのイラスト -->
+            <svg class="garapon" viewBox="0 0 400 480" id="garapon-svg">
+                <!-- グラデーション定義 -->
+                <defs>
+                    <!-- 高級木材グラデーション（マホガニー調） -->
+                    <linearGradient id="luxuryWood" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#8B0000;stop-opacity:1" />
+                        <stop offset="25%" style="stop-color:#6B1010;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#4A0808;stop-opacity:1" />
+                        <stop offset="75%" style="stop-color:#6B1010;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#8B0000;stop-opacity:1" />
+                    </linearGradient>
+                    <!-- 土台用ウッド -->
+                    <linearGradient id="baseWood" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#5C3317;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#3D2010;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#2A1508;stop-opacity:1" />
+                    </linearGradient>
+                    <!-- ゴールドグラデーション -->
+                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+                        <stop offset="25%" style="stop-color:#FFC125;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#FFB90F;stop-opacity:1" />
+                        <stop offset="75%" style="stop-color:#FFC125;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1" />
+                    </linearGradient>
+                    <!-- ゴールド球体 -->
+                    <radialGradient id="goldSphere" cx="30%" cy="30%">
+                        <stop offset="0%" style="stop-color:#FFFACD;stop-opacity:1" />
+                        <stop offset="30%" style="stop-color:#FFD700;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
+                    </radialGradient>
+                    <!-- シルバーグラデーション -->
+                    <linearGradient id="silverLuxury" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#F5F5F5;stop-opacity:1" />
+                        <stop offset="30%" style="stop-color:#D4D4D4;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#A8A8A8;stop-opacity:1" />
+                        <stop offset="70%" style="stop-color:#D4D4D4;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#F5F5F5;stop-opacity:1" />
+                    </linearGradient>
+                    <!-- ドラム面のグラデーション -->
+                    <linearGradient id="drumFace" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#CD5C5C;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#8B0000;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#4A0000;stop-opacity:1" />
+                    </linearGradient>
+                    <!-- 装飾用キラキラ -->
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                
+                <!-- 豪華な土台 -->
+                <rect x="40" y="400" width="320" height="35" rx="5" fill="url(#baseWood)" stroke="#FFD700" stroke-width="3"/>
+                <rect x="50" y="395" width="300" height="10" rx="2" fill="url(#goldGradient)"/>
+                <!-- 土台の装飾ライン -->
+                <line x1="60" y1="417" x2="340" y2="417" stroke="#FFD700" stroke-width="2" opacity="0.6"/>
+                
+                <!-- 白い受け皿（金縁付き） -->
+                <ellipse cx="290" cy="365" rx="55" ry="20" fill="#FFFEF0" stroke="url(#goldGradient)" stroke-width="3"/>
+                <ellipse cx="290" cy="365" rx="45" ry="15" fill="#FFFFF8"/>
+                
+                <!-- 豪華な支柱 -->
+                <g id="support-pillar">
+                    <!-- メイン支柱 -->
+                    <path d="M115,390 L140,200 L160,200 L175,390 Z" fill="url(#silverLuxury)" stroke="url(#goldGradient)" stroke-width="2"/>
+                    <!-- 支柱の装飾 -->
+                    <ellipse cx="150" cy="230" rx="15" ry="22" fill="#1a1a1a" stroke="url(#goldGradient)" stroke-width="2"/>
+                    <ellipse cx="150" cy="285" rx="17" ry="24" fill="#1a1a1a" stroke="url(#goldGradient)" stroke-width="2"/>
+                    <ellipse cx="150" cy="345" rx="19" ry="26" fill="#1a1a1a" stroke="url(#goldGradient)" stroke-width="2"/>
+                    <!-- 支柱上部の飾り -->
+                    <circle cx="150" cy="200" r="10" fill="url(#goldSphere)" stroke="#B8860B" stroke-width="1"/>
+                </g>
+                
+                <!-- ドラム本体（八角形・高級感） -->
+                <g id="drum-group">
+                    <!-- 八角形のドラム本体 -->
+                    <polygon points="200,55 280,90 310,170 280,250 200,285 120,250 90,170 120,90" 
+                             fill="url(#drumFace)" stroke="url(#goldGradient)" stroke-width="4"/>
+                    
+                    <!-- ドラムの装飾フレーム -->
+                    <polygon points="200,70 268,100 293,170 268,240 200,270 132,240 107,170 132,100" 
+                             fill="none" stroke="url(#goldGradient)" stroke-width="2" opacity="0.7"/>
+                    
+                    <!-- 中央の豪華な装飾 -->
+                    <circle cx="200" cy="170" r="50" fill="none" stroke="url(#goldGradient)" stroke-width="3"/>
+                    <circle cx="200" cy="170" r="40" fill="url(#luxuryWood)" stroke="url(#goldGradient)" stroke-width="2"/>
+                    
+                    <!-- クリスマスデコレーション -->
+                    <!-- 大きな星 -->
+                    <polygon points="200,130 207,150 228,150 211,162 218,182 200,170 182,182 189,162 172,150 193,150" 
+                             fill="#FFD700" stroke="#FFF" stroke-width="1" filter="url(#glow)"/>
+                    
+                    <!-- 宝石風の飾り -->
+                    <circle cx="145" cy="130" r="12" fill="#FF0000" stroke="#FFD700" stroke-width="2" filter="url(#glow)"/>
+                    <circle cx="255" cy="130" r="12" fill="#00AA00" stroke="#FFD700" stroke-width="2" filter="url(#glow)"/>
+                    <circle cx="145" cy="210" r="12" fill="#00AA00" stroke="#FFD700" stroke-width="2" filter="url(#glow)"/>
+                    <circle cx="255" cy="210" r="12" fill="#FF0000" stroke="#FFD700" stroke-width="2" filter="url(#glow)"/>
+                    
+                    <!-- 小さな星の飾り -->
+                    <polygon points="165,165 167,170 173,170 168,174 170,180 165,176 160,180 162,174 157,170 163,170" fill="#FFD700"/>
+                    <polygon points="235,165 237,170 243,170 238,174 240,180 235,176 230,180 232,174 227,170 233,170" fill="#FFD700"/>
+                    
+                    <!-- 上部の王冠風飾り -->
+                    <path d="M175,50 L185,65 L200,55 L215,65 L225,50" fill="none" stroke="url(#goldGradient)" stroke-width="3"/>
+                    <circle cx="175" cy="48" r="5" fill="url(#goldSphere)"/>
+                    <circle cx="200" cy="43" r="7" fill="#FF0000" stroke="url(#goldGradient)" stroke-width="2"/>
+                    <circle cx="225" cy="48" r="5" fill="url(#goldSphere)"/>
+                </g>
+                
+                <!-- 中央軸（豪華版） -->
+                <circle cx="200" cy="170" r="25" fill="url(#silverLuxury)" stroke="url(#goldGradient)" stroke-width="3"/>
+                <circle cx="200" cy="170" r="15" fill="url(#goldSphere)" stroke="#B8860B" stroke-width="2"/>
+                <circle cx="200" cy="170" r="6" fill="#FFFACD"/>
+                
+                <!-- ハンドル（豪華版） -->
+                <g id="handle-group">
+                    <path d="M225,170 L290,155 Q305,152 312,165 L318,180" fill="none" stroke="url(#silverLuxury)" stroke-width="10" stroke-linecap="round"/>
+                    <path d="M225,170 L290,155 Q305,152 312,165 L318,180" fill="none" stroke="url(#goldGradient)" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="320" cy="185" r="18" fill="url(#goldSphere)" stroke="#B8860B" stroke-width="3"/>
+                    <circle cx="314" cy="179" r="6" fill="rgba(255,255,255,0.7)"/>
+                </g>
+                
+                <!-- 玉が出るスロープ（金装飾付き） -->
+                <path d="M170,285 L170,350 Q170,370 200,375 L240,375" fill="none" stroke="url(#silverLuxury)" stroke-width="10"/>
+                <path d="M170,285 L170,350 Q170,370 200,375 L240,375" fill="none" stroke="url(#goldGradient)" stroke-width="3"/>
+            </svg>
+            
+            <!-- キラキラエフェクト -->
+            <div class="sparkles">
+                <span class="sparkle">✨</span>
+                <span class="sparkle">⭐</span>
+                <span class="sparkle">✨</span>
+                <span class="sparkle">🌟</span>
+                <span class="sparkle">✨</span>
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <button class="btn btn-spin" onclick="showConfirmation()">
+                🎰 回す！
+            </button>
+            <button class="btn btn-cancel" onclick="showCancelMessage()">
+                😢 回さない
+            </button>
+        </div>
+    </div>
+
+    <!-- 確認画面 -->
+    <div id="confirm-screen" class="screen modal">
+        <div class="modal-content">
+            <h2>🎅 本当に回しますか？ 🎅</h2>
+            <p class="confirm-text">ガラポンを回すと素敵なプレゼントが当たるかも！</p>
+            <div class="modal-buttons">
+                <button class="btn btn-confirm" onclick="startSpinning()">
+                    ✨ 回す！
+                </button>
+                <button class="btn btn-back" onclick="hideConfirmation()">
+                    🔙 戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 回転操作画面 -->
+    <div id="spin-screen" class="screen">
+        <h2 class="spin-title">🎄 ガラポンを回そう！ 🎄</h2>
+        
+        <!-- 高級ガラポンのイラスト -->
+        <div class="garapon-container spin-mode">
+            <svg class="garapon" viewBox="0 0 400 480" id="garapon-spinning">
+                <defs>
+                    <linearGradient id="luxuryWood2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#8B0000"/>
+                        <stop offset="50%" style="stop-color:#4A0808"/>
+                        <stop offset="100%" style="stop-color:#8B0000"/>
+                    </linearGradient>
+                    <linearGradient id="goldGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#FFD700"/>
+                        <stop offset="50%" style="stop-color:#FFB90F"/>
+                        <stop offset="100%" style="stop-color:#FFD700"/>
+                    </linearGradient>
+                    <linearGradient id="silverLux2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#F5F5F5"/>
+                        <stop offset="50%" style="stop-color:#A8A8A8"/>
+                        <stop offset="100%" style="stop-color:#F5F5F5"/>
+                    </linearGradient>
+                    <radialGradient id="goldSph2" cx="30%" cy="30%">
+                        <stop offset="0%" style="stop-color:#FFFACD"/>
+                        <stop offset="100%" style="stop-color:#B8860B"/>
+                    </radialGradient>
+                    <linearGradient id="drumF2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#CD5C5C"/>
+                        <stop offset="100%" style="stop-color:#4A0000"/>
+                    </linearGradient>
+                    <linearGradient id="baseW2" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#5C3317"/>
+                        <stop offset="100%" style="stop-color:#2A1508"/>
+                    </linearGradient>
+                </defs>
+                
+                <rect x="40" y="400" width="320" height="35" rx="5" fill="url(#baseW2)" stroke="#FFD700" stroke-width="3"/>
+                <rect x="50" y="395" width="300" height="10" rx="2" fill="url(#goldGrad2)"/>
+                
+                <ellipse cx="290" cy="365" rx="55" ry="20" fill="#FFFEF0" stroke="url(#goldGrad2)" stroke-width="3"/>
+                
+                <g id="support-pillar-spin">
+                    <path d="M115,390 L140,200 L160,200 L175,390 Z" fill="url(#silverLux2)" stroke="url(#goldGrad2)" stroke-width="2"/>
+                    <ellipse cx="150" cy="230" rx="15" ry="22" fill="#1a1a1a" stroke="url(#goldGrad2)" stroke-width="2"/>
+                    <ellipse cx="150" cy="285" rx="17" ry="24" fill="#1a1a1a" stroke="url(#goldGrad2)" stroke-width="2"/>
+                    <ellipse cx="150" cy="345" rx="19" ry="26" fill="#1a1a1a" stroke="url(#goldGrad2)" stroke-width="2"/>
+                </g>
+                
+                <g id="drum-group-spin">
+                    <polygon points="200,55 280,90 310,170 280,250 200,285 120,250 90,170 120,90" 
+                             fill="url(#drumF2)" stroke="url(#goldGrad2)" stroke-width="4"/>
+                    <polygon points="200,70 268,100 293,170 268,240 200,270 132,240 107,170 132,100" 
+                             fill="none" stroke="url(#goldGrad2)" stroke-width="2" opacity="0.7"/>
+                    <circle cx="200" cy="170" r="40" fill="url(#luxuryWood2)" stroke="url(#goldGrad2)" stroke-width="2"/>
+                    <polygon points="200,130 207,150 228,150 211,162 218,182 200,170 182,182 189,162 172,150 193,150" fill="#FFD700"/>
+                    <circle cx="145" cy="130" r="12" fill="#FF0000" stroke="#FFD700" stroke-width="2"/>
+                    <circle cx="255" cy="130" r="12" fill="#00AA00" stroke="#FFD700" stroke-width="2"/>
+                    <circle cx="145" cy="210" r="12" fill="#00AA00" stroke="#FFD700" stroke-width="2"/>
+                    <circle cx="255" cy="210" r="12" fill="#FF0000" stroke="#FFD700" stroke-width="2"/>
+                    <path d="M175,50 L185,65 L200,55 L215,65 L225,50" fill="none" stroke="url(#goldGrad2)" stroke-width="3"/>
+                    <circle cx="200" cy="43" r="7" fill="#FF0000" stroke="url(#goldGrad2)" stroke-width="2"/>
+                </g>
+                
+                <circle cx="200" cy="170" r="25" fill="url(#silverLux2)" stroke="url(#goldGrad2)" stroke-width="3"/>
+                <circle cx="200" cy="170" r="15" fill="url(#goldSph2)" stroke="#B8860B" stroke-width="2"/>
+                
+                <g id="handle-spin">
+                    <path d="M225,170 L290,155 Q305,152 312,165 L318,180" fill="none" stroke="url(#silverLux2)" stroke-width="10" stroke-linecap="round"/>
+                    <path d="M225,170 L290,155 Q305,152 312,165 L318,180" fill="none" stroke="url(#goldGrad2)" stroke-width="3"/>
+                    <circle cx="320" cy="185" r="18" fill="url(#goldSph2)" stroke="#B8860B" stroke-width="3"/>
+                </g>
+                
+                <path d="M170,285 L170,350 Q170,370 200,375 L240,375" fill="none" stroke="url(#silverLux2)" stroke-width="10"/>
+                <path d="M170,285 L170,350 Q170,370 200,375 L240,375" fill="none" stroke="url(#goldGrad2)" stroke-width="3"/>
+            </svg>
+        </div>
+        
+        <!-- 回転操作部分（ガラポンの下） -->
+        <div class="spin-control-area">
+            <p class="rotate-text">ゆっくり回してね♡</p>
+            <div class="arrow-container" id="arrow-container">
+                <svg class="rotate-arrow" viewBox="0 0 200 200">
+                    <!-- 円形の軌道 -->
+                    <circle cx="100" cy="100" r="70" fill="none" stroke="#FFD700" stroke-width="8" stroke-dasharray="10,5" opacity="0.7"/>
+                    <!-- 矢印 -->
+                    <g id="arrow-indicator">
+                        <circle cx="100" cy="30" r="15" fill="#FF4444"/>
+                        <polygon points="100,15 110,35 100,30 90,35" fill="#FFFFFF"/>
+                    </g>
+                </svg>
+                <div class="touch-area" id="touch-area"></div>
+                <div class="progress-ring">
+                    <svg viewBox="0 0 200 200">
+                        <circle cx="100" cy="100" r="70" fill="none" stroke="#228B22" stroke-width="10" stroke-dasharray="440" stroke-dashoffset="440" id="progress-circle"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 玉が出る画面 -->
+    <div id="ball-screen" class="screen">
+        <div class="ball-scene">
+            <!-- ガラポンから玉が出る演出 -->
+            <div class="garapon-output">
+                <svg viewBox="0 0 300 200" class="garapon-mini">
+                    <defs>
+                        <linearGradient id="miniGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FFD700"/>
+                            <stop offset="100%" style="stop-color:#B8860B"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- 簡易ガラポン -->
+                    <ellipse cx="100" cy="80" rx="60" ry="50" fill="#8B0000" stroke="url(#miniGold)" stroke-width="3"/>
+                    <!-- 穴 -->
+                    <ellipse cx="100" cy="120" rx="20" ry="12" fill="#1a1a1a"/>
+                    <!-- スロープ -->
+                    <path d="M100,130 Q100,160 150,170 L220,170" fill="none" stroke="#C0C0C0" stroke-width="8"/>
+                    <path d="M100,130 Q100,160 150,170 L220,170" fill="none" stroke="#FFD700" stroke-width="2"/>
+                    <!-- 受け皿 -->
+                    <ellipse cx="250" cy="170" rx="40" ry="15" fill="#FFFFF0" stroke="url(#miniGold)" stroke-width="2"/>
+                </svg>
+                <!-- 出てくる玉 -->
+                <div class="ball-coming" id="ball-coming">
+                    <div class="ball-shine"></div>
+                </div>
+            </div>
+            
+            <!-- 転がってきた玉 -->
+            <div class="ball-arrived" id="ball-arrived">
+                <div class="ball-shine"></div>
+            </div>
+            
+            <p class="wondering-text" id="wondering-text">何等かな…</p>
+        </div>
+    </div>
+
+    <!-- 結果画面 -->
+    <div id="result-screen" class="screen">
+        <div class="result-container">
+            <h1 class="result-text" id="result-text">３等！</h1>
+            <div class="confetti-container">
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+            </div>
+            <button class="btn btn-retry" onclick="resetGame()">
+                🔄 もう一度
+            </button>
+        </div>
+    </div>
+
+    <!-- キャンセルメッセージ -->
+    <div id="cancel-screen" class="screen modal">
+        <div class="modal-content sad">
+            <h2>😢 残念...</h2>
+            <p>また遊びに来てね！</p>
+            <button class="btn btn-back" onclick="hideCancelMessage()">
+                🔙 戻る
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
