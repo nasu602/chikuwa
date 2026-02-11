@@ -68,8 +68,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             gap: 40px;
+            min-height: calc(100vh - 80px);
             animation: fadeIn 1s ease-out;
+        }
+
+        /* ポスター画像 */
+        .poster-image {
+            max-width: 98%;
+            max-height: 750px;
+            width: auto;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out 0.3s both;
         }
 
         @keyframes fadeIn {
@@ -118,6 +132,19 @@
         @keyframes twinkle {
             0%, 100% { opacity: 0.5; transform: translateY(-50%) scale(0.8); }
             50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
+        }
+
+        .special-message {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 
+                0 0 10px rgba(255, 215, 0, 0.6),
+                0 0 20px rgba(255, 215, 0, 0.4),
+                2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .start-btn {
@@ -202,6 +229,8 @@
             position: relative;
             overflow: hidden;
             width: 100%;
+            text-align: center;
+            box-sizing: border-box;
         }
 
         .question-box::before {
@@ -218,18 +247,35 @@
         }
 
         .question-number {
-            font-size: 1.2rem;
+            font-size: 0.8rem;
             color: #ffd700;
-            margin-bottom: 15px;
-            letter-spacing: 3px;
+            margin: 0 auto 15px auto;
+            letter-spacing: 2px;
+            text-align: center;
+            display: block;
+            width: 100%;
         }
 
         .question-text {
-            font-size: 2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: #fff;
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
             line-height: 1.5;
+            text-align: center;
+            display: block;
+            width: 100%;
+            margin: 0 auto;
+            box-sizing: border-box;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+            padding: 0 10px;
+        }
+
+        .choices-wrapper {
+            position: relative;
+            width: 100%;
         }
 
         .choices {
@@ -237,6 +283,12 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             width: 100%;
+            transition: opacity 0.3s ease;
+        }
+
+        .choices.dimmed {
+            opacity: 0.3;
+            pointer-events: none;
         }
 
         .choice-btn {
@@ -253,6 +305,15 @@
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-sizing: border-box;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
 
         .choice-btn::before {
@@ -286,8 +347,21 @@
         .choice-emoji {
             font-size: 3rem;
             display: block;
-            margin-bottom: 10px;
+            margin: 0 auto 10px auto;
+            text-align: center;
             animation: bounce 2s ease-in-out infinite;
+            width: 100%;
+            box-sizing: border-box;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.2;
+        }
+        
+        /* テキスト選択肢の場合 */
+        .choice-emoji.is-text {
+            font-size: 1.1rem;
+            animation: none;
+            line-height: 1.4;
         }
 
         .choice-btn:nth-child(1) .choice-emoji { animation-delay: 0s; }
@@ -303,6 +377,11 @@
         .choice-number {
             font-size: 1.2rem;
             color: #ffd700;
+            text-align: center;
+            display: block;
+            width: 100%;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
 
         /* 選択された状態 */
@@ -321,9 +400,18 @@
         /* 回答確認ボタン */
         .confirm-buttons {
             display: none;
-            gap: 20px;
-            margin-top: 20px;
-            animation: fadeIn 0.5s ease-out;
+            flex-direction: row;
+            gap: 15px;
+            margin-bottom: 0;
+            margin-top: 0;
+            justify-content: center;
+            flex-wrap: nowrap;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            width: 100%;
         }
 
         .confirm-buttons.show {
@@ -332,13 +420,15 @@
 
         .confirm-btn {
             font-family: 'Zen Maru Gothic', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1rem;
             font-weight: 700;
-            padding: 18px 40px;
+            padding: 14px 25px;
             border: none;
             border-radius: 40px;
             cursor: pointer;
             transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .answer-btn {
@@ -369,8 +459,14 @@
             flex-direction: column;
             align-items: center;
             gap: 25px;
-            margin-top: 30px;
-            animation: bounceIn 0.6s ease-out;
+            margin-bottom: 0;
+            margin-top: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            width: 100%;
         }
 
         .result-box.show {
@@ -384,19 +480,19 @@
         }
 
         .result-text {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 900;
             text-align: center;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         .result-text.correct {
-            background: linear-gradient(135deg, #ff6b9d, #ffb347, #ff6b9d);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 2s linear infinite;
+            color: #ffd700;
+            text-shadow: 
+                0 0 10px rgba(255, 215, 0, 0.8),
+                0 0 20px rgba(255, 215, 0, 0.6),
+                0 0 30px rgba(255, 215, 0, 0.4),
+                2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .result-text.incorrect {
@@ -446,6 +542,61 @@
             display: block;
         }
 
+        /* 結果画面 */
+        .result-screen {
+            text-align: center;
+            padding: 40px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .result-title {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffd700, #ffec8b, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 40px;
+            white-space: nowrap;
+            text-align: center;
+            width: 100%;
+        }
+
+        .final-score {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 3px solid rgba(255, 215, 0, 0.5);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .score-value-large {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffd700, #ffec8b, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 20px 0;
+        }
+
+        .score-detail-final {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .special-bonus {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.8),
+                0 0 40px rgba(255, 215, 0, 0.6);
+            animation: pulse 2s ease-in-out infinite;
+            margin-top: 30px;
+        }
+
         /* 正解率表示 */
         .score-box {
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
@@ -491,9 +642,10 @@
         .progress-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #ffd700, #ff8c00);
+            background: linear-gradient(90deg, #ff8c00, #ff6b00);
             border-radius: 10px;
-            transition: width 0.5s ease;
+            transition: width 0.8s ease;
+            box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
         }
 
         .question-progress {
@@ -552,6 +704,8 @@
             z-index: 9999;
             cursor: pointer;
             transition: opacity 0.5s ease, visibility 0.5s ease;
+            padding: 0;
+            margin: 0;
         }
 
         .tap-to-start.hidden {
@@ -563,12 +717,22 @@
         .tap-content {
             text-align: center;
             animation: pulse 2s ease-in-out infinite;
+            width: auto;
+            max-width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
         }
 
         .tap-icon {
             font-size: 5rem;
-            margin-bottom: 20px;
+            margin: 0 auto 20px auto;
             animation: bounce 1s ease-in-out infinite;
+            display: block;
+            text-align: center;
         }
 
         .tap-text {
@@ -578,26 +742,41 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 10px;
+            margin: 0 auto 10px auto;
+            text-align: center;
+            width: auto;
+            display: block;
+            box-sizing: border-box;
+            position: relative;
+            left: 0;
+            right: 0;
         }
 
         .tap-subtext {
             font-size: 1.2rem;
             color: rgba(255, 215, 0, 0.6);
             letter-spacing: 3px;
+            text-align: center;
+            width: auto;
+            margin: 0 auto;
+            display: block;
+            box-sizing: border-box;
+            position: relative;
+            left: 0;
+            right: 0;
         }
 
         /* BGMボタン */
         .bgm-btn {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             font-family: 'Zen Maru Gothic', sans-serif;
-            font-size: 1rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            padding: 12px 20px;
+            padding: 8px 16px;
             border: 2px solid rgba(255, 215, 0, 0.5);
-            border-radius: 30px;
+            border-radius: 25px;
             background: rgba(0, 0, 0, 0.5);
             color: #fff;
             cursor: pointer;
@@ -630,20 +809,184 @@
             }
 
             .start-btn {
-                font-size: 1.4rem;
-                padding: 20px 40px;
+                font-size: 1.2rem;
+                padding: 18px 30px;
+                white-space: nowrap;
+            }
+
+            .special-message {
+                font-size: 1.1rem;
+            }
+
+            .tap-content {
+                width: auto;
+                max-width: 95%;
+            }
+
+            .tap-text {
+                font-size: 2rem;
+                margin: 0 auto 10px auto;
+            }
+
+            .tap-subtext {
+                font-size: 1rem;
+                margin: 0 auto;
             }
 
             .question-text {
-                font-size: 1.5rem;
+                font-size: 0.95rem;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            .confirm-btn {
+                font-size: 0.9rem;
+                padding: 12px 20px;
             }
 
             .choices {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .choice-btn {
+                font-size: 1.2rem;
+                padding: 20px 15px;
             }
 
             .choice-emoji {
-                font-size: 2.5rem;
+                font-size: 2rem;
+            }
+
+            .choice-emoji.is-text {
+                font-size: 0.9rem;
+            }
+
+            .question-text {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .start-btn {
+                font-size: 1rem;
+                padding: 16px 24px;
+                white-space: nowrap;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .poster-image {
+                max-height: 550px;
+            }
+
+            .special-message {
+                font-size: 0.95rem;
+            }
+
+            .tap-content {
+                width: auto;
+                max-width: 95%;
+            }
+
+            .tap-text {
+                font-size: 1.8rem;
+                margin: 0 auto 10px auto;
+            }
+
+            .tap-subtext {
+                font-size: 0.9rem;
+                margin: 0 auto;
+            }
+
+            .question-text {
+                font-size: 0.85rem;
+                text-align: center;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            .choice-emoji.is-text {
+                font-size: 0.85rem;
+            }
+
+            .confirm-btn {
+                font-size: 0.85rem;
+                padding: 10px 18px;
+            }
+
+            .confirm-buttons {
+                gap: 10px;
+            }
+
+            .result-text {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .start-btn {
+                font-size: 0.9rem;
+                padding: 14px 20px;
+                white-space: nowrap;
+            }
+
+            .special-message {
+                font-size: 0.85rem;
+            }
+
+            .choice-btn {
+                font-size: 1rem;
+                padding: 18px 12px;
+            }
+
+            .choice-emoji {
+                font-size: 1.8rem;
+            }
+
+            .choice-emoji.is-text {
+                font-size: 0.8rem;
+            }
+
+            .choices {
+                gap: 12px;
+            }
+
+            .question-text {
+                font-size: 0.75rem;
+                text-align: center;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            .confirm-btn {
+                font-size: 0.75rem;
+                padding: 10px 15px;
+            }
+
+            .confirm-buttons {
+                gap: 8px;
+            }
+
+            .result-text {
+                font-size: 1rem;
+            }
+
+            .tap-content {
+                width: auto;
+                max-width: 95%;
+            }
+
+            .tap-text {
+                font-size: 1.5rem;
+                margin: 0 auto 10px auto;
+            }
+
+            .tap-subtext {
+                font-size: 0.85rem;
+                margin: 0 auto;
             }
         }
     </style>
@@ -674,7 +1017,8 @@
     <div class="container">
         <!-- スタート画面 -->
         <div class="start-screen" id="startScreen">
-            <h1 class="title">ちひろクイズ</h1>
+            <img src="poster.jpg" alt="ちひろバレンタイン企画" class="poster-image">
+            <p class="special-message">全問正解できたら超特別な特典が！？</p>
             <button class="start-btn" onclick="startQuiz()">
                 ちひろクイズスタート！
             </button>
@@ -697,7 +1041,22 @@
                 <p class="question-text">Q.1 ちひろのファンマークは？</p>
             </div>
 
-            <div class="choices">
+            <!-- 選択肢コンテナ（回答ボタンを重ねるため） -->
+            <div class="choices-wrapper">
+                <!-- 回答確認ボタン（選択肢の上に重ねる） -->
+                <div class="confirm-buttons" id="confirmButtons">
+                    <button class="confirm-btn answer-btn" onclick="submitAnswer()">回答する</button>
+                    <button class="confirm-btn cancel-btn" onclick="cancelAnswer()">回答しない</button>
+                </div>
+
+                <!-- 結果表示（選択肢の上に重ねる） -->
+                <div class="result-box" id="resultBox">
+                    <p class="result-text" id="resultText"></p>
+                    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">次へ進む</button>
+                    <button class="retry-btn" id="retryBtn" onclick="retryQuestion()">もう一回選び直す</button>
+                </div>
+
+                <div class="choices" id="choicesContainer">
                 <button class="choice-btn" onclick="selectAnswer(1)">
                     <span class="choice-emoji">🙊</span>
                     <span class="choice-number">1</span>
@@ -714,19 +1073,7 @@
                     <span class="choice-emoji">🐼</span>
                     <span class="choice-number">4</span>
                 </button>
-            </div>
-
-            <!-- 回答確認ボタン -->
-            <div class="confirm-buttons" id="confirmButtons">
-                <button class="confirm-btn answer-btn" onclick="submitAnswer()">回答する</button>
-                <button class="confirm-btn cancel-btn" onclick="cancelAnswer()">回答しない</button>
-            </div>
-
-            <!-- 結果表示 -->
-            <div class="result-box" id="resultBox">
-                <p class="result-text" id="resultText"></p>
-                <button class="next-btn" id="nextBtn" onclick="nextQuestion()">次へ進む</button>
-                <button class="retry-btn" id="retryBtn" onclick="retryQuestion()">もう一回選び直す</button>
+                </div>
             </div>
         </div>
     </div>
@@ -760,47 +1107,78 @@
             }
         }
 
-        // かわいい音を再生する関数
-        function playStartSound() {
+        // クイズスタート用の音（ワクワクする音）
+        function playQuizStartSound() {
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
             
-            // キラキラした音を作成（複数の音を重ねる）
-            const notes = [523.25, 659.25, 783.99, 1046.50]; // ド、ミ、ソ、高いド
+            // ワクワクする音（上昇する音階）
+            const ascendingNotes = [523.25, 659.25, 783.99, 1046.50, 1318.51, 1567.98]; // ド、ミ、ソ、高いド、高いミ、高いソ
             
-            notes.forEach((freq, index) => {
+            ascendingNotes.forEach((freq, index) => {
                 const oscillator = audioContext.createOscillator();
                 const gainNode = audioContext.createGain();
                 
                 oscillator.connect(gainNode);
                 gainNode.connect(audioContext.destination);
                 
-                // かわいい音色（サイン波 + 少し三角波）
                 oscillator.type = 'sine';
                 oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
                 
-                // 音量のエンベロープ（ふわっと鳴ってすっと消える）
                 const startTime = audioContext.currentTime + index * 0.1;
                 gainNode.gain.setValueAtTime(0, startTime);
                 gainNode.gain.linearRampToValueAtTime(0.3, startTime + 0.05);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.5);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.3);
                 
                 oscillator.start(startTime);
-                oscillator.stop(startTime + 0.5);
+                oscillator.stop(startTime + 0.3);
+            });
+        }
+
+        // かわいい音を再生する関数（タップしてスタート用）
+        function playStartSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // キラキラした音を作成（より多くの音を重ねてキラキラ感を出す）
+            const mainNotes = [523.25, 659.25, 783.99, 1046.50, 1318.51]; // ド、ミ、ソ、高いド、高いミ
+            
+            mainNotes.forEach((freq, index) => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                // キラキラした音色（三角波とサイン波を組み合わせ）
+                oscillator.type = index % 2 === 0 ? 'triangle' : 'sine';
+                oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
+                
+                // 音量のエンベロープ（ふわっと鳴ってすっと消える）
+                const startTime = audioContext.currentTime + index * 0.08;
+                gainNode.gain.setValueAtTime(0, startTime);
+                gainNode.gain.linearRampToValueAtTime(0.4, startTime + 0.03);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.4);
+                
+                oscillator.start(startTime);
+                oscillator.stop(startTime + 0.4);
             });
             
-            // 追加のキラキラ音（高い音）
-            setTimeout(() => {
-                const osc = audioContext.createOscillator();
-                const gain = audioContext.createGain();
-                osc.connect(gain);
-                gain.connect(audioContext.destination);
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(1318.51, audioContext.currentTime); // 高いミ
-                gain.gain.setValueAtTime(0.2, audioContext.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
-                osc.start();
-                osc.stop(audioContext.currentTime + 0.3);
-            }, 400);
+            // 追加のキラキラ音（高い音をランダムに）
+            const sparkleNotes = [1567.98, 1760.00, 1975.53, 2093.00];
+            sparkleNotes.forEach((freq, index) => {
+                setTimeout(() => {
+                    const osc = audioContext.createOscillator();
+                    const gain = audioContext.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioContext.destination);
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, audioContext.currentTime);
+                    const startTime = audioContext.currentTime;
+                    gain.gain.setValueAtTime(0.15, startTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.25);
+                    osc.start();
+                    osc.stop(startTime + 0.25);
+                }, 300 + index * 50);
+            });
         }
 
         // キラキラエフェクトを生成
@@ -836,27 +1214,97 @@
 
         // クイズをスタート
         function startQuiz() {
-            // かわいい音を再生
-            playStartSound();
+            // クイズスタート用の音を再生
+            playQuizStartSound();
             
             const startScreen = document.getElementById('startScreen');
             const quizScreen = document.getElementById('quizScreen');
+            
+            // 初期化
+            currentQuestion = 0;
+            correctCount = 0;
+            answeredCount = 0;
             
             startScreen.style.animation = 'fadeIn 0.5s ease-out reverse';
             
             setTimeout(() => {
                 startScreen.style.display = 'none';
                 quizScreen.classList.add('active');
+                displayQuestion(); // 最初の問題を表示
             }, 400);
         }
 
+        // 問題データ
+        const questions = [
+            {
+                question: "ちひろのファンマークは？",
+                choices: ["🙊", "🐮", "🦁", "🐼"],
+                correct: 2,
+                correctMessage: "正解！さすがにわかるよね💖✨"
+            },
+            {
+                question: "Xの本垢の正しいユーザーネームは？",
+                choices: ["chihirochann86", "chiichan86", "chihirochan86", "chihiro_chan"],
+                correct: 3,
+                correctMessage: "正解！ちひろのことよく見てくれてるね♡"
+            },
+            {
+                question: "本垢の現在のフォロワー数は？",
+                choices: ["5千人", "３万人", "10万人", "5万人"],
+                correct: 4,
+                correctMessage: "正解！だんだん難しくなるよ〜？"
+            },
+            {
+                question: "ちひろの年齢は？",
+                choices: ["21歳", "24歳", "20歳", "28歳"],
+                correct: 2,
+                correctMessage: "正解！今年で25歳だよん🥰"
+            },
+            {
+                question: "ちひろの誕生日は？",
+                choices: ["4/8", "10/24", "7/30", "12/25"],
+                correct: 3,
+                correctMessage: "正解！カレンダーに入れておいてね？♡"
+            },
+            {
+                question: "ちひろの星座は？",
+                choices: ["獅子座", "おじつじ座", "水瓶座", "牡牛座"],
+                correct: 1,
+                correctMessage: "正解！よくわかったね！！さすが♡",
+                incorrectMessage: "ヒント：ちひろの本垢のプロフに書いているかも..."
+            },
+            {
+                question: "ちひろの大好きな食べ物は？",
+                choices: ["牛丼", "麻婆豆腐", "カレー", "ハンバーグ"],
+                correct: 1,
+                correctMessage: "正解！！残り３問まで来たね♡"
+            },
+            {
+                question: "ちひろは、2023年の何月からXを始めている？",
+                choices: ["12月", "6月", "9月", "5月"],
+                correct: 4,
+                correctMessage: "正解！！これも知ってくれてるの！？すごい🥰"
+            },
+            {
+                question: "ちひろは何カップでしょう？",
+                choices: ["Fカップ", "Eカップ", "Dカップ", "Oカップ"],
+                correct: 2,
+                correctMessage: "正解！他の女の子のはジロジロ見ちゃだめだよ？"
+            },
+            {
+                question: "最近、ちひろが作っていた食べ物は何でしょう？",
+                choices: ["クッキー", "マシュマロ", "マカロン", "チョコ"],
+                correct: 4,
+                correctMessage: "大正解！！もうちひろマスターだね♡"
+            }
+        ];
+
         // 現在選択中の回答
         let selectedAnswer = null;
-        const correctAnswer = 2; // 正解は2番（🐮）
         
         // スコア管理
         const totalQuestions = 10;
-        let currentQuestion = 1;
+        let currentQuestion = 0; // 0から始まる（配列のインデックス）
         let correctCount = 0;
         let answeredCount = 0;
 
@@ -867,10 +1315,55 @@
             const questionProgress = document.getElementById('questionProgress');
             
             const percentage = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+            const questionNumber = currentQuestion + 1; // 表示用（1から始まる）
             
             scoreValue.textContent = percentage + '%';
-            progressFill.style.width = (currentQuestion / totalQuestions * 100) + '%';
-            questionProgress.textContent = 'Q.' + currentQuestion + ' / ' + totalQuestions;
+            // 正解数に基づいてバーが溜まる
+            progressFill.style.width = (correctCount / totalQuestions * 100) + '%';
+            questionProgress.textContent = 'Q.' + questionNumber + ' / ' + totalQuestions;
+        }
+
+        // 問題を表示
+        function displayQuestion() {
+            const question = questions[currentQuestion];
+            const questionText = document.querySelector('.question-text');
+            const choiceButtons = document.querySelectorAll('.choice-btn');
+            
+            // 問題文を更新
+            questionText.textContent = 'Q.' + (currentQuestion + 1) + ' ' + question.question;
+            
+            // 選択肢を更新
+            choiceButtons.forEach((btn, index) => {
+                const emoji = btn.querySelector('.choice-emoji');
+                const number = btn.querySelector('.choice-number');
+                const choiceText = question.choices[index];
+                
+                if (emoji) {
+                    emoji.textContent = choiceText;
+                    // 絵文字かテキストかを判定（絵文字は通常1-2文字、テキストは長い）
+                    if (choiceText.length > 2 || !/[\u{1F300}-\u{1F9FF}]/u.test(choiceText)) {
+                        emoji.classList.add('is-text');
+                    } else {
+                        emoji.classList.remove('is-text');
+                    }
+                }
+                if (number) number.textContent = (index + 1);
+            });
+            
+            // 状態をリセット
+            selectedAnswer = null;
+            choiceButtons.forEach(btn => {
+                btn.classList.remove('selected', 'not-selected');
+            });
+            
+            // UIをリセット
+            document.getElementById('confirmButtons').style.display = 'none';
+            document.getElementById('confirmButtons').classList.remove('show');
+            document.getElementById('resultBox').style.display = 'none';
+            document.getElementById('resultBox').classList.remove('show');
+            document.getElementById('choicesContainer').classList.remove('dimmed');
+            
+            updateScore();
         }
 
         // 回答を選択
@@ -878,6 +1371,16 @@
             selectedAnswer = choice;
             
             const buttons = document.querySelectorAll('.choice-btn');
+            const confirmButtons = document.getElementById('confirmButtons');
+            const choicesContainer = document.getElementById('choicesContainer');
+            
+            // 即座に回答確認ボタンを表示
+            confirmButtons.style.display = 'flex';
+            confirmButtons.classList.add('show');
+            
+            // 選択肢を半透明にする
+            choicesContainer.classList.add('dimmed');
+            
             buttons.forEach((btn, index) => {
                 btn.classList.remove('selected', 'not-selected');
                 if (index + 1 === choice) {
@@ -886,9 +1389,6 @@
                     btn.classList.add('not-selected');
                 }
             });
-            
-            // 回答確認ボタンを表示
-            document.getElementById('confirmButtons').classList.add('show');
             
             // 結果表示をリセット
             document.getElementById('resultBox').classList.remove('show');
@@ -905,21 +1405,39 @@
             const confirmButtons = document.getElementById('confirmButtons');
             
             // 確認ボタンを非表示
+            confirmButtons.style.display = 'none';
             confirmButtons.classList.remove('show');
             
             answeredCount++;
             
-            if (selectedAnswer === correctAnswer) {
+            const currentQ = questions[currentQuestion];
+            if (selectedAnswer === currentQ.correct) {
                 // 正解
                 correctCount++;
-                resultText.textContent = '正解！さすがにわかるよね💖✨';
+                const message = currentQ.correctMessage || '正解！';
+                // 「正解！！」や「大正解！！」を1行にして、その後に改行を追加
+                if (message.includes('<br>')) {
+                    resultText.innerHTML = message;
+                } else if (message.startsWith('大正解！！')) {
+                    // 「大正解！！」の後に改行を追加
+                    resultText.innerHTML = '大正解！！<br>' + message.substring(5);
+                } else if (message.startsWith('正解！！')) {
+                    // 「正解！！」の後に改行を追加
+                    resultText.innerHTML = '正解！！<br>' + message.substring(4);
+                } else if (message.startsWith('正解！')) {
+                    // 「正解！」の後に改行を追加
+                    resultText.innerHTML = '正解！<br>' + message.substring(3);
+                } else {
+                    resultText.innerHTML = '正解！<br>' + message;
+                }
                 resultText.className = 'result-text correct';
                 nextBtn.classList.add('show');
                 retryBtn.classList.remove('show');
                 playCorrectSound();
             } else {
                 // 不正解
-                resultText.textContent = '不正解...😢';
+                const incorrectMsg = currentQ.incorrectMessage || '不正解...😢';
+                resultText.textContent = incorrectMsg;
                 resultText.className = 'result-text incorrect';
                 nextBtn.classList.remove('show');
                 retryBtn.classList.add('show');
@@ -928,6 +1446,8 @@
             
             updateScore();
             
+            // 即座に結果を表示
+            resultBox.style.display = 'flex';
             resultBox.classList.add('show');
         }
 
@@ -936,11 +1456,19 @@
             selectedAnswer = null;
             
             const buttons = document.querySelectorAll('.choice-btn');
+            const confirmButtons = document.getElementById('confirmButtons');
+            const choicesContainer = document.getElementById('choicesContainer');
+            
             buttons.forEach(btn => {
                 btn.classList.remove('selected', 'not-selected');
             });
             
-            document.getElementById('confirmButtons').classList.remove('show');
+            // 選択肢を元に戻す
+            choicesContainer.classList.remove('dimmed');
+            
+            // 確認ボタンを非表示
+            confirmButtons.style.display = 'none';
+            confirmButtons.classList.remove('show');
         }
 
         // もう一回選び直す
@@ -949,19 +1477,61 @@
             answeredCount--; // 回答数を戻す
             
             const buttons = document.querySelectorAll('.choice-btn');
+            const resultBox = document.getElementById('resultBox');
+            const resultText = document.getElementById('resultText');
+            const confirmButtons = document.getElementById('confirmButtons');
+            const choicesContainer = document.getElementById('choicesContainer');
+            
             buttons.forEach(btn => {
                 btn.classList.remove('selected', 'not-selected');
             });
             
-            document.getElementById('resultBox').classList.remove('show');
-            document.getElementById('confirmButtons').classList.remove('show');
+            // 選択肢を元に戻す
+            choicesContainer.classList.remove('dimmed');
+            
+            // 結果表示を完全に非表示にして、テキストもクリア
+            resultBox.style.display = 'none';
+            resultBox.classList.remove('show');
+            resultText.textContent = '';
+            resultText.className = 'result-text';
+            
+            // 確認ボタンも非表示
+            confirmButtons.style.display = 'none';
+            confirmButtons.classList.remove('show');
             
             updateScore();
         }
 
         // 次の問題へ
         function nextQuestion() {
-            alert('次の問題へ進みます！（ここに次の問題を追加できます）');
+            // 次の問題に進む
+            currentQuestion++;
+            
+            if (currentQuestion < totalQuestions) {
+                // まだ問題が残っている場合
+                displayQuestion();
+            } else {
+                // 全問終了
+                showResultScreen();
+            }
+        }
+
+        // 結果画面を表示
+        function showResultScreen() {
+            const quizScreen = document.getElementById('quizScreen');
+            const finalScore = Math.round((correctCount / totalQuestions) * 100);
+            
+            quizScreen.innerHTML = `
+                <div class="result-screen">
+                    <h2 class="result-title">クイズ終了！</h2>
+                    <div class="final-score">
+                        <div class="score-label">最終正解率</div>
+                        <div class="score-value-large">${finalScore}%</div>
+                        <div class="score-detail-final">${correctCount} / ${totalQuestions} 問正解</div>
+                    </div>
+                    ${finalScore === 100 ? '<p class="special-bonus">🎉 全問正解！超特別な特典が！？ 🎉</p>' : ''}
+                </div>
+            `;
         }
 
         // 正解音（ピンポーン！）
@@ -1039,14 +1609,22 @@
             const tapScreen = document.getElementById('tapToStart');
             const btn = document.getElementById('bgmBtn');
             
+            // キラキラしたかわいい音を再生
+            playStartSound();
+            
             // BGMを開始
             bgmAudio = document.getElementById('bgmAudio');
-            bgmAudio.volume = 0.4;
-            bgmAudio.play().then(() => {
-                bgmPlaying = true;
-                btn.textContent = '🔇 BGM OFF';
-                btn.classList.add('on');
-            });
+            if (bgmAudio) {
+                bgmAudio.volume = 0.4;
+                bgmAudio.play().then(() => {
+                    bgmPlaying = true;
+                    btn.textContent = '🔇 BGM OFF';
+                    btn.classList.add('on');
+                }).catch(err => {
+                    console.log('BGM再生エラー:', err);
+                    // エラーでも続行
+                });
+            }
             
             // タップ画面を非表示
             tapScreen.classList.add('hidden');
