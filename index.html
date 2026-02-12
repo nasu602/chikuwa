@@ -597,6 +597,150 @@
             margin-top: 30px;
         }
 
+        /* 待機メッセージ */
+        .wait-message {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            text-align: center;
+            margin: 30px 0;
+            text-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.8),
+                0 0 40px rgba(255, 215, 0, 0.6);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes countdownPulse {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* チョコレート */
+        .chocolate-wrapper {
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            animation: chocolateFall 2s ease-in forwards;
+        }
+
+        @keyframes chocolateFall {
+            0% { top: -200px; }
+            100% { top: 50%; transform: translate(-50%, -50%); }
+        }
+
+        .chocolate {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .chocolate:hover {
+            transform: scale(1.1);
+        }
+
+        .chocolate-emoji {
+            font-size: 20rem;
+            animation: chocolateBounce 0.5s ease-out;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+        }
+
+        @keyframes chocolateBounce {
+            0% { transform: scale(0) rotate(-180deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .chocolate-text {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ff6b9d;
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-align: center;
+            text-shadow: 
+                0 0 10px rgba(255, 107, 157, 0.8),
+                0 0 20px rgba(255, 107, 157, 0.6),
+                2px 2px 4px rgba(0, 0, 0, 0.8);
+            z-index: 2;
+            white-space: nowrap;
+            opacity: 0;
+            animation: textFadeIn 0.5s ease-out 2.5s forwards;
+        }
+
+        @keyframes textFadeIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        @keyframes chocolateOpen {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; }
+        }
+
+        .bonus-image-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .bonus-image-container.show {
+            display: flex;
+        }
+
+        .bonus-image {
+            max-width: 90%;
+            max-height: 70vh;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .bonus-message {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.8),
+                0 0 40px rgba(255, 215, 0, 0.6);
+            margin-bottom: 30px;
+            text-align: center;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .bonus-instruction {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6b9d;
+            text-align: center;
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(145deg, rgba(255, 107, 157, 0.2), rgba(255, 140, 157, 0.1));
+            border: 2px solid rgba(255, 107, 157, 0.5);
+            border-radius: 20px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            text-shadow: 
+                0 0 10px rgba(255, 107, 157, 0.6),
+                0 0 20px rgba(255, 107, 157, 0.4);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+        }
+
         /* 正解率表示 */
         .score-box {
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
@@ -924,6 +1068,31 @@
             .result-text {
                 font-size: 1.2rem;
             }
+
+            .wait-message {
+                font-size: 1.2rem;
+            }
+
+            .chocolate {
+                width: 250px;
+                height: 250px;
+            }
+
+            .chocolate-emoji {
+                font-size: 15rem;
+            }
+
+            .chocolate-text {
+                font-size: 1.2rem;
+            }
+
+            .bonus-message {
+                font-size: 1.5rem;
+            }
+
+            .bonus-instruction {
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 360px) {
@@ -987,6 +1156,31 @@
             .tap-subtext {
                 font-size: 0.85rem;
                 margin: 0 auto;
+            }
+
+            .wait-message {
+                font-size: 1rem;
+            }
+
+            .chocolate {
+                width: 200px;
+                height: 200px;
+            }
+
+            .chocolate-emoji {
+                font-size: 12rem;
+            }
+
+            .chocolate-text {
+                font-size: 1rem;
+            }
+
+            .bonus-message {
+                font-size: 1.2rem;
+            }
+
+            .bonus-instruction {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -1521,17 +1715,101 @@
             const quizScreen = document.getElementById('quizScreen');
             const finalScore = Math.round((correctCount / totalQuestions) * 100);
             
-            quizScreen.innerHTML = `
-                <div class="result-screen">
-                    <h2 class="result-title">クイズ終了！</h2>
-                    <div class="final-score">
-                        <div class="score-label">最終正解率</div>
-                        <div class="score-value-large">${finalScore}%</div>
-                        <div class="score-detail-final">${correctCount} / ${totalQuestions} 問正解</div>
+            if (finalScore === 100) {
+                // 全問正解の場合
+                quizScreen.innerHTML = `
+                    <div class="result-screen">
+                        <h2 class="result-title">クイズ終了！</h2>
+                        <div class="final-score">
+                            <div class="score-label">最終正解率</div>
+                            <div class="score-value-large">${finalScore}%</div>
+                            <div class="score-detail-final">${correctCount} / ${totalQuestions} 問正解</div>
+                        </div>
+                        <p class="special-bonus">🎉 全問正解！超特別な特典が！？ 🎉</p>
+                        <p id="waitMessage" class="wait-message" style="display: none;">画面そのままでお待ちください…</p>
+                        <div id="chocolateWrapper" class="chocolate-wrapper" style="display: none;">
+                            <div class="chocolate" onclick="openChocolate()">
+                                <div class="chocolate-emoji">🍫</div>
+                                <div class="chocolate-text">ここをタップしてね♡</div>
+                            </div>
+                        </div>
+                        <div id="bonusImageContainer" class="bonus-image-container">
+                            <img src="bonus.jpg" alt="特典" class="bonus-image">
+                            <p class="bonus-message">全問正解おめでとう♡</p>
+                            <p class="bonus-instruction">受け取れたらこのポストに見れた！ってリプしてね♡</p>
+                        </div>
                     </div>
-                    ${finalScore === 100 ? '<p class="special-bonus">🎉 全問正解！超特別な特典が！？ 🎉</p>' : ''}
-                </div>
-            `;
+                `;
+                
+                // 待機メッセージを表示
+                setTimeout(() => {
+                    const waitMessage = document.getElementById('waitMessage');
+                    waitMessage.style.display = 'block';
+                    
+                    // 5秒後にチョコを表示
+                    setTimeout(() => {
+                        const chocolateWrapper = document.getElementById('chocolateWrapper');
+                        chocolateWrapper.style.display = 'block';
+                    }, 5000);
+                }, 500);
+            } else {
+                // 全問正解でない場合
+                quizScreen.innerHTML = `
+                    <div class="result-screen">
+                        <h2 class="result-title">クイズ終了！</h2>
+                        <div class="final-score">
+                            <div class="score-label">最終正解率</div>
+                            <div class="score-value-large">${finalScore}%</div>
+                            <div class="score-detail-final">${correctCount} / ${totalQuestions} 問正解</div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // カウントダウン開始
+        function startCountdown() {
+            const countdownEl = document.getElementById('countdown');
+            let count = 5;
+            
+            // 最初の5を即座に表示
+            countdownEl.textContent = count;
+            countdownEl.style.display = 'block';
+            countdownEl.style.animation = 'countdownPulse 0.5s ease-out';
+            
+            const countdownInterval = setInterval(() => {
+                count--;
+                if (count >= 0) {
+                    countdownEl.textContent = count;
+                    countdownEl.style.animation = 'none';
+                    setTimeout(() => {
+                        countdownEl.style.animation = 'countdownPulse 0.5s ease-out';
+                    }, 10);
+                }
+                
+                if (count < 0) {
+                    clearInterval(countdownInterval);
+                    countdownEl.style.display = 'none';
+                    // チョコを表示
+                    const chocolateWrapper = document.getElementById('chocolateWrapper');
+                    chocolateWrapper.style.display = 'block';
+                }
+            }, 1000);
+        }
+
+        // チョコを開く
+        function openChocolate() {
+            const chocolateWrapper = document.getElementById('chocolateWrapper');
+            const bonusContainer = document.getElementById('bonusImageContainer');
+            
+            // チョコが開くアニメーション
+            const chocolate = chocolateWrapper.querySelector('.chocolate');
+            chocolate.style.animation = 'chocolateOpen 0.8s ease-out forwards';
+            
+            setTimeout(() => {
+                chocolateWrapper.style.display = 'none';
+                bonusContainer.classList.add('show');
+            }, 800);
         }
 
         // 正解音（ピンポーン！）
